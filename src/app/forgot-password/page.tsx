@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import Link from 'next/link';
+import AppLink from '@/components/AppLink';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -47,9 +47,9 @@ export default function ForgotPasswordPage() {
           </button>
         </form>
         <div className="text-center">
-          <Link href="/login" className="text-blue-600 hover:underline text-sm">
+          <AppLink href="/login" className="text-blue-600 hover:underline text-sm">
             Volver al login
-          </Link>
+          </AppLink>
         </div>
       </div>
     </div>

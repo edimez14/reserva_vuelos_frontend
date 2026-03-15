@@ -1,9 +1,9 @@
 'use client';
 
 import { Suspense } from 'react';
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import AuthGuard from '@/components/AuthGuard';
+import AppLink from '@/components/AppLink';
 
 export default function ConfirmationPage() {
   return (
@@ -63,18 +63,18 @@ function ConfirmationContent() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link
+          <AppLink
             href="/"
             className="py-2 px-6 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
           >
             Ir al inicio
-          </Link>
-          <Link
+          </AppLink>
+          <AppLink
             href="/flights"
             className="py-2 px-6 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-semibold rounded-md hover:bg-gray-50 dark:hover:bg-gray-800"
           >
             Buscar otro vuelo
-          </Link>
+          </AppLink>
         </div>
       </div>
     </AuthGuard>

@@ -2,20 +2,23 @@
 
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import Link from 'next/link';
+import AppLink from '@/components/AppLink';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
     setError('');
     const result = await login({ email, password });
     if (!result.success) {
       setError(result.error);
+      setSubmitting(false);
     }
   };
 
@@ -47,19 +50,20 @@ export default function LoginPage() {
           </div>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            disabled={submitting}
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            Ingresar
+            {submitting ? 'Entrando...' : 'Ingresar'}
           </button>
         </form>
         <div className="text-center text-sm">
-          <Link href="/forgot-password" className="text-blue-600 hover:underline">
+          <AppLink href="/forgot-password" className="text-blue-600 hover:underline">
             ¿Olvidaste tu contraseña?
-          </Link>
+          </AppLink>
           <br />
-          <Link href="/register" className="text-blue-600 hover:underline">
+          <AppLink href="/register" className="text-blue-600 hover:underline">
             ¿No tienes cuenta? Regístrate
-          </Link>
+          </AppLink>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import Link from 'next/link';
+import AppLink from '@/components/AppLink';
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
@@ -13,6 +13,7 @@ export default function RegisterPage() {
     password2: '',
   });
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const { register } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,11 +22,12 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
     setError('');
     const result = await register(form);
     if (!result.success) {
-      // Si el error es un objeto con múltiples campos, lo mostramos como string
       setError(typeof result.error === 'string' ? result.error : JSON.stringify(result.error));
+      setSubmitting(false);
     }
   };
 
@@ -91,15 +93,16 @@ export default function RegisterPage() {
           </div>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            disabled={submitting}
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            Registrarse
+            {submitting ? 'Creando cuenta...' : 'Registrarse'}
           </button>
         </form>
         <div className="text-center text-sm">
-          <Link href="/login" className="text-blue-600 hover:underline">
+          <AppLink href="/login" className="text-blue-600 hover:underline">
             ¿Ya tienes cuenta? Inicia sesión
-          </Link>
+          </AppLink>
         </div>
       </div>
     </div>
