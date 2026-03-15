@@ -64,7 +64,7 @@ function ConfirmationContent() {
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
-            href="/dashboard"
+            href="/"
             className="py-2 px-6 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
           >
             Ir al inicio
