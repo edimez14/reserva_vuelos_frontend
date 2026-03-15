@@ -58,6 +58,7 @@ export const authService = {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('user');
+    window.dispatchEvent(new Event('auth-changed'));
   },
 
   // Guardar tokens y usuario después de login/register
@@ -66,6 +67,7 @@ export const authService = {
     localStorage.setItem('access_token', data.access);
     localStorage.setItem('refresh_token', data.refresh);
     localStorage.setItem('user', JSON.stringify(data.user));
+    window.dispatchEvent(new Event('auth-changed'));
   },
 
   getCurrentUser(): User | null {

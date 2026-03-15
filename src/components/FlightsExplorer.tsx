@@ -64,8 +64,8 @@ export default function FlightsExplorer() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">Vuelos disponibles</h1>
+    <div className="p-8 max-w-7xl mx-auto space-y-6 text-gray-100">
+      <h1 className="text-3xl font-bold text-white">Vuelos disponibles</h1>
 
       <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-white p-4 rounded-md shadow">
         <input
@@ -73,7 +73,7 @@ export default function FlightsExplorer() {
           placeholder="Origen"
           value={origin}
           onChange={(e) => setOrigin(e.target.value.toUpperCase())}
-          className="border border-gray-300 rounded-md px-3 py-2"
+          className="border border-gray-300 rounded-md px-3 py-2 text-gray-900 placeholder:text-gray-500"
           maxLength={3}
         />
         <input
@@ -81,14 +81,14 @@ export default function FlightsExplorer() {
           placeholder="Destino"
           value={destination}
           onChange={(e) => setDestination(e.target.value.toUpperCase())}
-          className="border border-gray-300 rounded-md px-3 py-2"
+          className="border border-gray-300 rounded-md px-3 py-2 text-gray-900 placeholder:text-gray-500"
           maxLength={3}
         />
         <input
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="border border-gray-300 rounded-md px-3 py-2"
+          className="border border-gray-300 rounded-md px-3 py-2 text-gray-900"
         />
         <button
           type="submit"
@@ -98,10 +98,10 @@ export default function FlightsExplorer() {
         </button>
       </form>
 
-      {error && <p className="text-red-600">{error}</p>}
+      {error && <p className="text-red-300">{error}</p>}
 
       {!loading && !error && visibleFlights.length === 0 && (
-        <p className="text-gray-600">No hay vuelos para mostrar.</p>
+        <p className="text-gray-300">No hay vuelos para mostrar.</p>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -110,7 +110,7 @@ export default function FlightsExplorer() {
         ))}
       </div>
 
-      {loading && <p className="text-gray-600">Cargando vuelos...</p>}
+      {loading && <p className="text-gray-300">Cargando vuelos...</p>}
 
       {!loading && visibleCount < flights.length && (
         <div className="flex justify-center">

@@ -31,8 +31,8 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
-        <h2 className="text-3xl font-bold text-center">Registro</h2>
+      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow text-gray-900">
+        <h2 className="text-3xl font-bold text-center text-gray-900">Registro</h2>
         {error && <div className="bg-red-100 text-red-700 p-3 rounded">{error}</div>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -43,7 +43,7 @@ export default function RegisterPage() {
               value={form.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
             />
           </div>
           <div>
@@ -54,7 +54,7 @@ export default function RegisterPage() {
               value={form.name}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
             />
           </div>
           <div>
@@ -64,7 +64,7 @@ export default function RegisterPage() {
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
             />
           </div>
           <div>
@@ -75,7 +75,7 @@ export default function RegisterPage() {
               value={form.password}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
             />
           </div>
           <div>
@@ -86,7 +86,7 @@ export default function RegisterPage() {
               value={form.password2}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
             />
           </div>
           <button
