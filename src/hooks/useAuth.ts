@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { authService, LoginData, RegisterData, ForgotPasswordData, ResetPasswordData } from '@/services/auth';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
+import { startNavigation } from '@/utils/navigation';
 
 type AuthResult = { success: true } | { success: false; error: string };
 type MessageResult = { success: true; message: string } | { success: false; error: string };
@@ -31,7 +32,8 @@ export const useAuth = () => {
       const response = await authService.login(data);
       authService.saveSession(response);
       setUser(response.user);
-      router.push('/dashboard');
+      startNavigation();
+      router.push('/');
       return { success: true };
     } catch (error: unknown) {
       const err = error as AxiosError<{ detail?: string }>;
@@ -44,7 +46,8 @@ export const useAuth = () => {
       const response = await authService.register(data);
       authService.saveSession(response);
       setUser(response.user);
-      router.push('/dashboard');
+      startNavigation();
+      router.push('/');
       return { success: true };
     } catch (error: unknown) {
       const err = error as AxiosError<{ detail?: string }>;
@@ -75,6 +78,7 @@ export const useAuth = () => {
   const logout = () => {
     authService.logout();
     setUser(null);
+    startNavigation();
     router.push('/login');
   };
 

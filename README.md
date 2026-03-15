@@ -202,3 +202,40 @@ En esta rama se implementó la fase 12: perfil de usuario.
 
 - El módulo de perfil quedó funcional en frontend.
 - El usuario puede gestionar sus datos desde una sola pantalla.
+
+## feature/remove-dashboard-smooth-nav
+
+En esta rama se hizo limpieza del frontend para quitar dashboard y mejorar la experiencia al navegar.
+
+### Cambios aplicados
+
+- Se eliminó la página `/dashboard` del proyecto.
+- Login y registro ahora redirigen a `/` al completar correctamente.
+- Se agregó estado visual de carga en botones de login y registro.
+- Se creó una transición global con overlay de carga al navegar entre páginas.
+- Los links internos del frontend ahora usan un componente común para disparar la transición.
+
+### Archivos creados
+
+- src/components/AppLink.tsx
+- src/components/PageTransition.tsx
+- src/utils/navigation.ts
+
+### Archivos actualizados
+
+- src/hooks/useAuth.ts
+- src/app/login/page.tsx
+- src/app/register/page.tsx
+- src/components/Navbar.tsx
+- src/components/FlightCard.tsx
+- src/app/purchase/confirmation/page.tsx
+- src/app/forgot-password/page.tsx
+- src/app/layout.tsx
+
+### Archivos eliminados
+
+- src/app/dashboard/page.tsx
+
+### Validación
+
+- Build de producción ejecutado con éxito (`npm run build`).
