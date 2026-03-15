@@ -135,3 +135,42 @@ En esta rama se implementó la fase 10 de búsqueda de vuelos con listado optimi
 - Usuario autenticado entra directo al listado de vuelos.
 - Usuario no autenticado va a login.
 - UI de búsqueda queda funcional, clara y lista para conectar compra completa.
+
+## feature/4-reservation-ui
+
+En esta rama se hizo la fase 11: reservar y comprar. El flujo ya está completo y se puede usar así:
+
+**vuelo → reserva → pago → confirmación**
+
+### Qué se agregó
+
+- Pantalla de **reserva** con datos del vuelo
+- Formulario para **1 a 5 pasajeros**
+- Campo de asiento opcional por pasajero
+- Cálculo de total estimado
+- Pantalla de **pago** con formulario simple de tarjeta (simulado)
+- Pantalla de **confirmación** con ticket y resumen final
+
+### Rutas usadas en esta fase
+
+| Ruta | Para qué sirve |
+|------|----------------|
+| /reservation | Completar la reserva del vuelo |
+| /purchase | Hacer el pago de la reserva |
+| /purchase/confirmation | Ver la confirmación y ticket |
+
+### Archivos de esta fase
+
+- src/app/reservation/page.tsx
+- src/app/purchase/page.tsx
+- src/app/purchase/confirmation/page.tsx
+- src/components/FlightCard.tsx
+- src/services/reservations.ts
+- src/services/purchase.ts
+
+### Resultado final
+
+- Ya se puede crear una reserva desde frontend.
+- Ya se puede completar compra simulada.
+- Ya se muestra pantalla final de confirmación.
+- Se mejoraron colores para que en modo oscuro sí se lea bien.
