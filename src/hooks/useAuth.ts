@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { authService, LoginData, RegisterData, ForgotPasswordData, ResetPasswordData } from '@/services/auth';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
@@ -11,6 +11,20 @@ export const useAuth = () => {
   const [user, setUser] = useState(currentUser);
   const [loading] = useState<boolean>(currentUser === null);
   const router = useRouter();
+
+  useEffect(() => {
+    const syncAuth = () => {
+      setUser(authService.getCurrentUser());
+    };
+
+    window.addEventListener('auth-changed', syncAuth);
+    window.addEventListener('storage', syncAuth);
+
+    return () => {
+      window.removeEventListener('auth-changed', syncAuth);
+      window.removeEventListener('storage', syncAuth);
+    };
+  }, []);
 
   const login = async (data: LoginData): Promise<AuthResult> => {
     try {
@@ -72,6 +86,6 @@ export const useAuth = () => {
     forgotPassword,
     resetPassword,
     logout,
-    isAuthenticated: authService.isAuthenticated,
+    isAuthenticated: () => !!user,
   };
 };

@@ -21,8 +21,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
-        <h2 className="text-3xl font-bold text-center">Iniciar Sesión</h2>
+      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow text-gray-900">
+        <h2 className="text-3xl font-bold text-center text-gray-900">Iniciar Sesión</h2>
         {error && <div className="bg-red-100 text-red-700 p-3 rounded">{error}</div>}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -32,7 +32,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
             />
           </div>
           <div>
@@ -42,7 +42,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
             />
           </div>
           <button
