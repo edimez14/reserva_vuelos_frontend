@@ -7,9 +7,12 @@ interface FlightCardProps {
 
 export default function FlightCard({ flight }: FlightCardProps) {
   const formatDate = (value: string) => {
+    // Si no viene fecha, mostramos un texto claro.
     if (!value) return 'No disponible';
     const date = new Date(value);
+    // Si la fecha no se puede leer, mostramos el valor original para no romper la tarjeta.
     if (Number.isNaN(date.getTime())) return value;
+    // Formato amigable para usuario final.
     return date.toLocaleString('es-CO', {
       dateStyle: 'short',
       timeStyle: 'short',
@@ -39,6 +42,7 @@ export default function FlightCard({ flight }: FlightCardProps) {
         <div>
           <p className="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2">${flight.price}</p>
           <AppLink
+            // Mandamos los datos en la URL para prellenar la pantalla de reserva.
             href={`/reservation?flightNumber=${encodeURIComponent(flight.flight_number)}&airline=${encodeURIComponent(flight.airline)}&origin=${encodeURIComponent(flight.origin_iata)}&destination=${encodeURIComponent(flight.destination_iata)}&price=${encodeURIComponent(String(flight.price))}&departureTime=${encodeURIComponent(flight.departure_time)}&arrivalTime=${encodeURIComponent(flight.arrival_time)}`}
             className="inline-block w-full text-center py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
           >

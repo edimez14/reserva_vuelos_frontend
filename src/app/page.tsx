@@ -10,15 +10,18 @@ export default function Home() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    // La pantalla principal solo se muestra con sesión iniciada.
     if (!authService.isAuthenticated()) {
       router.replace('/login');
       return;
     }
 
+    // Si hay sesión, recién aquí dejamos renderizar el explorador.
     setReady(true);
   }, [router]);
 
   if (!ready) {
+    // Evita parpadeos mientras validamos autenticación.
     return <div className="p-8">Cargando...</div>;
   }
 

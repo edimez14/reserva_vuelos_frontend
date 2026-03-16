@@ -7,6 +7,7 @@ import { purchaseService } from '@/services/purchase';
 
 export default function PurchasePage() {
   return (
+    // useSearchParams necesita Suspense para hidratarse sin errores.
     <Suspense fallback={<div className="p-8 text-gray-800 dark:text-gray-100">Cargando...</div>}>
       <PurchaseContent />
     </Suspense>
@@ -53,10 +54,12 @@ function PurchaseContent() {
 
     setLoading(true);
     try {
+      // En este proyecto el pago es simulado, por eso el método va fijo en "card".
       const ticket = await purchaseService.createPurchase({
         reservation_id: Number(reservationId),
         payment_method: 'card',
       });
+      // Llevamos al usuario a la pantalla de confirmación con resumen del ticket.
       router.push(`/purchase/confirmation?ticketId=${ticket.id}&origin=${origin}&destination=${destination}&price=${price}&airline=${airline}`);
     } catch {
       setError('No se pudo completar el pago. Intenta de nuevo.');

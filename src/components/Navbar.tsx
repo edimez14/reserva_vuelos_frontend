@@ -10,6 +10,7 @@ export default function Navbar() {
     <nav className="bg-gray-800 text-white p-4">
       <ul className="flex space-x-4">
         <li><AppLink href="/">Inicio</AppLink></li>
+        {/* Si hay sesión, mostramos las opciones privadas. */}
         {isAuthenticated() ? (
           <>
             <li><AppLink href="/flights">Vuelos</AppLink></li>
@@ -21,6 +22,7 @@ export default function Navbar() {
             </li>
           </>
         ) : (
+          /* Si no hay sesión, mostramos acceso y registro. */
           <>
             <li><AppLink href="/login">Login</AppLink></li>
             <li><AppLink href="/register">Registro</AppLink></li>

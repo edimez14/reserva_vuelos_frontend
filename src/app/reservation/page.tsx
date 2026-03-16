@@ -7,6 +7,7 @@ import { reservationsService, Passenger } from '@/services/reservations';
 
 export default function ReservationPage() {
   return (
+    // useSearchParams necesita Suspense en este tipo de página cliente.
     <Suspense fallback={<div className="p-8 text-gray-800 dark:text-gray-100">Cargando...</div>}>
       <ReservationContent />
     </Suspense>
@@ -59,6 +60,7 @@ function ReservationContent() {
 
     setLoading(true);
     try {
+      // En backend se guarda como texto separado por coma (ej: "12A,12B").
       const seatSelection = passengers
         .map((p) => (p.seat || '').trim())
         .filter((seat) => seat.length > 0)
@@ -77,6 +79,7 @@ function ReservationContent() {
         passengers,
         seat_selection: seatSelection,
       });
+      // Pasamos datos por query para prellenar la pantalla de pago.
       router.push(`/purchase?reservationId=${reservation.id}&origin=${origin}&destination=${destination}&price=${price}&airline=${airline}`);
     } catch {
       setError('No se pudo crear la reserva. Intenta de nuevo.');

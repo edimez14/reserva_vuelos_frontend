@@ -1,5 +1,6 @@
 import api from './api';
 
+// Estructura de un vuelo como llega desde la API.
 export interface Flight {
   flight_number: string;
   airline: string;
@@ -22,6 +23,7 @@ export interface FlightSearchParams {
 
 export const flightsService = {
   async searchFlights(params?: FlightSearchParams): Promise<Flight[]> {
+    // Busca vuelos y devuelve solo la lista útil para pintar tarjetas.
     const response = await api.get('/flights/search', { params });
     return response.data.results;
   },

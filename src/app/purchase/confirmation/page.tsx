@@ -7,6 +7,7 @@ import AppLink from '@/components/AppLink';
 
 export default function ConfirmationPage() {
   return (
+    // Espera mientras se leen los datos de la URL.
     <Suspense fallback={<div className="p-8 text-gray-800 dark:text-gray-100">Cargando...</div>}>
       <ConfirmationContent />
     </Suspense>
@@ -16,6 +17,7 @@ export default function ConfirmationPage() {
 function ConfirmationContent() {
   const searchParams = useSearchParams();
 
+  // Este resumen llega por query params desde la pantalla de pago.
   const ticketId = searchParams.get('ticketId') || '';
   const origin = searchParams.get('origin') || '';
   const destination = searchParams.get('destination') || '';

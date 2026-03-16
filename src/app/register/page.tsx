@@ -5,6 +5,7 @@ import { useAuth } from '@/hooks/useAuth';
 import AppLink from '@/components/AppLink';
 
 export default function RegisterPage() {
+  // Guardamos todo el formulario en un solo estado para manejarlo más fácil.
   const [form, setForm] = useState({
     email: '',
     name: '',
@@ -17,6 +18,7 @@ export default function RegisterPage() {
   const { register } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Actualiza solo el campo que cambió, sin perder el resto.
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -26,6 +28,7 @@ export default function RegisterPage() {
     setError('');
     const result = await register(form);
     if (!result.success) {
+      // Si backend manda error raro, lo convertimos a texto para poder mostrarlo.
       setError(typeof result.error === 'string' ? result.error : JSON.stringify(result.error));
       setSubmitting(false);
     }

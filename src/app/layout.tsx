@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Metadatos base que usa Next para título y descripción del sitio.
 export const metadata: Metadata = {
   title: 'Reserva de Vuelos',
   description: 'Sistema de reserva de vuelos',
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Barra de navegación visible en toda la aplicación. */}
         <Navbar />
+        {/* Capa de carga que aparece cuando hay cambio de página. */}
         <PageTransition />
         {children}
       </body>

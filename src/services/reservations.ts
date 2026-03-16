@@ -1,5 +1,6 @@
 import api from './api';
 
+// Datos mínimos por pasajero en la reserva.
 export interface Passenger {
   name: string;
   document: string;
@@ -33,11 +34,13 @@ export interface Reservation {
 
 export const reservationsService = {
   async createReservation(data: CreateReservationData): Promise<Reservation> {
+    // Crea una reserva nueva con vuelo y pasajeros.
     const response = await api.post('/reservations', data);
     return response.data;
   },
 
   async getUserReservations(): Promise<Reservation[]> {
+    // Historial de reservas del usuario logueado.
     const response = await api.get('/reservations/user');
     return response.data;
   },

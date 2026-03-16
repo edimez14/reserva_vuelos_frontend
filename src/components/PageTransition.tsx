@@ -8,6 +8,7 @@ export default function PageTransition() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    // Escucha un evento global para prender la capa de carga.
     const onStart = () => setIsLoading(true);
     window.addEventListener('app:navigate:start', onStart);
 
@@ -21,6 +22,7 @@ export default function PageTransition() {
       return;
     }
 
+    // Pequeña espera para que la transición se vea suave y no parpadee.
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 220);

@@ -5,6 +5,7 @@ import { useAuth } from '@/hooks/useAuth';
 import AppLink from '@/components/AppLink';
 
 export default function LoginPage() {
+  // Estado de formulario y mensajes para feedback al usuario.
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,11 +14,13 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Bloqueamos botón para evitar doble envío accidental.
     setSubmitting(true);
     setError('');
     const result = await login({ email, password });
     if (!result.success) {
       setError(result.error);
+      // Si falla, habilitamos de nuevo el botón para reintentar.
       setSubmitting(false);
     }
   };

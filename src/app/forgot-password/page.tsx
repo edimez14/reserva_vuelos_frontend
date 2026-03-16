@@ -12,6 +12,7 @@ export default function ForgotPasswordPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Limpiamos mensajes anteriores antes de un nuevo intento.
     setError('');
     setMessage('');
     const result = await forgotPassword({ email });

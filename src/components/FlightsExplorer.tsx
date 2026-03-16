@@ -5,6 +5,7 @@ import FlightCard from '@/components/FlightCard';
 import { Flight, flightsService } from '@/services/flights';
 
 export default function FlightsExplorer() {
+  // Clave para guardar resultado inicial en sesión del navegador.
   const cacheKey = 'home-flights-cache';
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
@@ -15,13 +16,16 @@ export default function FlightsExplorer() {
   const [visibleCount, setVisibleCount] = useState(9);
 
   const visibleFlights = useMemo(() => {
+    // Solo mostramos una parte de la lista para no recargar la pantalla al inicio.
     return flights.slice(0, visibleCount);
   }, [flights, visibleCount]);
 
   const loadFlights = async (params?: { origin?: string; destination?: string; date?: string }) => {
+    // Si no hay filtros, esto es la búsqueda "por defecto".
     const isDefaultSearch = !params?.origin && !params?.destination && !params?.date;
 
     if (isDefaultSearch && typeof window !== 'undefined') {
+      // Intentamos leer cache para no volver a pedir los mismos vuelos.
       const cachedFlights = sessionStorage.getItem(cacheKey);
       if (cachedFlights) {
         setFlights(JSON.parse(cachedFlights));
@@ -39,6 +43,7 @@ export default function FlightsExplorer() {
       setFlights(data);
       setVisibleCount(9);
       if (isDefaultSearch && typeof window !== 'undefined') {
+        // Guardamos cache solo para búsqueda por defecto.
         sessionStorage.setItem(cacheKey, JSON.stringify(data));
       }
     } catch {
@@ -50,12 +55,14 @@ export default function FlightsExplorer() {
   };
 
   useEffect(() => {
+    // Primera carga al entrar a la pantalla.
     loadFlights();
   }, []);
 
   const handleSearch = async (e: FormEvent) => {
     e.preventDefault();
 
+    // Enviamos undefined cuando el campo va vacío para no forzar filtros vacíos.
     await loadFlights({
       origin: origin || undefined,
       destination: destination || undefined,

@@ -13,12 +13,15 @@ type AppLinkProps = LinkProps & {
 
 export default function AppLink({ children, onClick, target, ...props }: AppLinkProps) {
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    // Primero respetamos cualquier lógica que nos pasen desde afuera.
     onClick?.(event);
 
+    // Si el click fue cancelado o abre nueva pestaña, no mostramos transición.
     if (event.defaultPrevented || target === '_blank') {
       return;
     }
 
+    // Para navegación normal dentro de la app, disparamos loader global.
     startNavigation();
   };
 

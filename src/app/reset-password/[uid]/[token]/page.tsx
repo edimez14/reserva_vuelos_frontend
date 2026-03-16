@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/useAuth';
 export default function ResetPasswordPage() {
   const params = useParams();
   const router = useRouter();
+  // uid y token llegan desde la URL del correo de recuperación.
   const uid = params.uid as string;
   const token = params.token as string;
   const [newPassword, setNewPassword] = useState('');
@@ -22,6 +23,7 @@ export default function ResetPasswordPage() {
     const result = await resetPassword({ uid, token, new_password: newPassword, new_password2: newPassword2 });
     if (result.success) {
       setMessage('Contraseña actualizada. Redirigiendo al login...');
+      // Damos unos segundos para que el usuario alcance a leer el mensaje.
       setTimeout(() => router.push('/login'), 3000);
     } else {
       setError(result.error);

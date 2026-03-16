@@ -19,6 +19,7 @@ export default function ProfilePage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    // Cargamos datos reales del perfil apenas entra a la pantalla.
     const loadProfile = async () => {
       try {
         const data = await profileService.getProfile();
@@ -36,6 +37,8 @@ export default function ProfilePage() {
   }, []);
 
   const getErrorMessage = (err: unknown, fallback: string) => {
+    // Muchos errores del backend vienen en "detail".
+    // Esta función evita repetir esa lectura en cada catch.
     const axiosErr = err as AxiosError<{ detail?: string }>;
     return axiosErr.response?.data?.detail ?? fallback;
   };
@@ -59,6 +62,7 @@ export default function ProfilePage() {
     setMessage('');
     setError('');
 
+    // Validación rápida en frontend para evitar llamada innecesaria.
     if (newPassword !== newPassword2) {
       setError('Las contraseñas nuevas no coinciden.');
       return;
