@@ -218,6 +218,24 @@ En esta rama se hizo limpieza del frontend para quitar dashboard y mejorar la ex
 ### Archivos creados
 
 - src/components/AppLink.tsx
+
+## feature/deploy-vercel
+
+En esta rama se dejó el frontend listo para despliegue en Vercel (sin Docker).
+
+### Cambios aplicados
+
+- Se creó `vercel.json` con configuración base de Next.js para producción.
+- Se agregó `.env.example` para documentar variables requeridas.
+- Se actualizó `next.config.ts` con `reactStrictMode` y cabeceras de seguridad.
+
+### Variables necesarias en Vercel
+
+- `NEXT_PUBLIC_API_URL` (ejemplo: `https://<tu-app>.fly.dev/api/v1`)
+
+### Resultado
+
+- El frontend compila para producción y queda preparado para conectar backend desplegado.
 - src/components/PageTransition.tsx
 - src/utils/navigation.ts
 
